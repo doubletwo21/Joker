@@ -3,13 +3,6 @@ package com.personal.joker.widget;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * Created by 钉某人
- * github: https://github.com/DingMouRen
- * email: naildingmouren@gmail.com
- */
-
-
 public interface OnSlideListener<T> {
 
     void onSliding(RecyclerView.ViewHolder viewHolder, float ratio, int direction);

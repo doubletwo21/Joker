@@ -20,9 +20,6 @@ import android.widget.TextView;
 
 import com.personal.joker.R;
 
-/**
- * Created by DELL on 2017/7/25.
- */
 public class SmileView extends LinearLayout implements Animator.AnimatorListener {
 
 

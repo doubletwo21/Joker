@@ -9,12 +9,6 @@ import androidx.core.view.MotionEventCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * Created by 钉某人
- * github: https://github.com/DingMouRen
- * email: naildingmouren@gmail.com
- */
-
 public class SlideLayoutManager extends RecyclerView.LayoutManager {
 
     private RecyclerView mRecyclerView;
