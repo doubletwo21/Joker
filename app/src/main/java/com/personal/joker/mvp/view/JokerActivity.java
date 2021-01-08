@@ -136,6 +136,9 @@ public class JokerActivity extends PresenterActivity<IJokerContract.Presenter>
     }
 
 
+
+
+
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         @Override
@@ -154,12 +157,14 @@ public class JokerActivity extends PresenterActivity<IJokerContract.Presenter>
                     .apply(bitmapTransform(new BlurTransformation(10, 8)).centerCrop())
                     .into(holder.imgBg);
             holder.tvTitle.setText(bean.getContent());
+
         }
 
         @Override
         public int getItemCount() {
             return dataList.size();
         }
+
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             ImageView imgBg;

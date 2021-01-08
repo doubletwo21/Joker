@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:networkSecurityConfig">
+        <activity android:name=".mvp.view.TestOkHttpActivity">
+
+        </activity>
         <activity android:name=".mvp.view.JokerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,10 +5,11 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.personal.joker.base.presenter.BasePresenter;
 import com.personal.joker.common.contract.IJokerContract;
+import com.personal.joker.db.BaseCallBack;
+import com.personal.joker.db.OkHttpUtil;
 import com.personal.joker.db.model.JokerModel;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.io.IOException;
 import java.util.List;
 
 import okhttp3.Call;
@@ -29,31 +30,34 @@ public class JokerPresenter extends BasePresenter<IJokerContract.View<List<Joker
 
     @Override
     public void getData(String time, String page, String pageSize, String sort) {
-        OkHttpUtils.get().url("http://v.juhe.cn/joke/content/list.php")
+
+        OkHttpUtil.newBuilder().get().url("http://v.juhe.cn/joke/content/list.php")
                 .addParams("sort", sort)
                 .addParams("page", page)
                 .addParams("pagesize", pageSize)
                 .addParams("time", time)
                 .addParams("key", "5c56e4e89ee9e8cfa686bffd489b1402")
-                .build().execute(new StringCallback() {
+                .build().enqueue(new BaseCallBack<JokerModel>() {
             @Override
-            public void onError(Call call, Exception e, int id) {
+            public void onSuccess(JokerModel jokerModel) {
+                if (jokerModel.getError_code() == 0) {
+                    List<JokerModel.ResultBean.DataBean> data = jokerModel.getResult().getData();
+                    mView.onDataSuccess(data);
+                } else
+                    mView.onDataFailed();
+            }
 
+            @Override
+            public void onError(int code) {
+                super.onError(code);
+                Log.e("error", code + "");
                 mView.onDataFailed();
             }
 
             @Override
-            public void onResponse(String response, int id) {
-                JokerModel jokerModel = new Gson().fromJson(response, JokerModel.class);
-                int error_code = jokerModel.getError_code();
-                if (error_code == 0) {
-                    JokerModel.ResultBean result = jokerModel.getResult();
-                    List<JokerModel.ResultBean.DataBean> data = result.getData();
-                    if (data != null && data.size() != 0)
-                        mView.onDataSuccess(data);
-                    else
-                        mView.onDataNoMore("没有更多数据了");
-                }
+            public void onFailure(Call call, IOException e) {
+                super.onFailure(call, e);
+                mView.onDataFailed();
             }
         });
     }

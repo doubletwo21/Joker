@@ -2,6 +2,8 @@ package com.personal.joker.base.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -22,6 +24,7 @@ import java.util.List;
 public abstract class BaseActivity extends AppCompatActivity {
 
     public Context mContext;
+    private Unbinder mBind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +67,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 初始化控件
      */
     private void initWidgets() {
-
+        mBind = ButterKnife.bind(this);
     }
 
     public abstract int getContentLayoutId();

@@ -101,6 +101,32 @@ public class JokerModel {
             public void setUpdatetime(String updatetime) {
                 this.updatetime = updatetime;
             }
+
+            @Override
+            public String toString() {
+                return "DataBean{" +
+                        "content='" + content + '\'' +
+                        ", hashId='" + hashId + '\'' +
+                        ", unixtime=" + unixtime +
+                        ", updatetime='" + updatetime + '\'' +
+                        '}';
+            }
         }
+
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                    "data=" + data +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "JokerModel{" +
+                "reason='" + reason + '\'' +
+                ", result=" + result +
+                ", error_code=" + error_code +
+                '}';
     }
 }

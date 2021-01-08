@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ public abstract class BaseFragment extends Fragment {
     public Context mContext;
     public Activity mActivity;
     protected View mRoot;
+    private Unbinder mBind;
 
     public BaseFragment() {
         // Required empty public constructor
@@ -53,12 +56,14 @@ public abstract class BaseFragment extends Fragment {
         }
         return mRoot;
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //当view创建完成后，初始化数据
         initData();
     }
+
     /**
      * 初始化数据
      */
@@ -72,7 +77,7 @@ public abstract class BaseFragment extends Fragment {
      * @param view 根布局
      */
     private void initWidget(View view) {
-
+        mBind = ButterKnife.bind(this, view);
     }
 
     /**
