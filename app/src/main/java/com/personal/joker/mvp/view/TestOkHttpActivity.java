@@ -1,22 +1,18 @@
 package com.personal.joker.mvp.view;
 
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.personal.joker.R;
 import com.personal.joker.base.ui.BaseActivity;
 import com.personal.joker.db.BaseCallBack;
 import com.personal.joker.db.OkHttpUtil;
-import com.personal.joker.mvp.model.TestBean;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
-import androidx.appcompat.widget.AppCompatTextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import okhttp3.Call;
